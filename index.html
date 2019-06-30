@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<meta charset="utf-8">
+<head>
+  <title>Index</title>
+  <!-- SLIDER -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  <!-- ICONOS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- WRAPPER -->
+  <div id="wrapper">
+    <!-- BANNER WRAPPER -->
+    <div id="banner-wrapper">
+      <header>
+        <div id="header-inner">
+          <a href="https://politecnicadeavila.usal.es/" target="_blank" id="logo">
+            <img src="img/pics/eps_logo.png" alt="eps_logo">
+          </a>
+          <nav>
+            <a href="#" id="menu-icon">
+              <i class="fa fa-bars"></i>
+            </a>
+            <ul>
+              <li>
+                <a href="index.html">
+                  Inicio
+                </a>
+              </li>
+              <li>
+                <a href="#services">
+                  Servicios
+                </a>
+              </li>
+              <li>
+                <a href="developing.html">
+                  Desarrollo
+                </a>
+              </li>
+              <li>
+                <a href="ourteam.html">
+                  Nuestro equipo
+                </a>
+              </li>
+              <li>
+                <a href="https://politecnicadeavila.usal.es/" target="_blank">Contacto</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <!-- SLIDER -->
+      <div id="slide-wrap">
+        <section class="slider">
+          <ul class="slider1">
+            <li><img src="img/slider/slider1.jpg" alt=""></li>
+            <li><img src="img/slider/slider2.jpg" alt=""></li>
+            <li><img src="img/slider/slider3.jpg" alt=""></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <!-- SERVICIOS -->
+    <div class="one-third-padding" id="services">
+      <h3>¿Qué realizamos?</h3>
+      <img src="img/pics/image1.png" alt="">
+      <p>Generamos IDEs que promueven el desarrollo social, económico y ambiental del territorio.</p>
+    </div>
+    <div class="one-third-padding">
+      <h3>¿Como lo hacemos?</h3>
+      <img src="img/pics/image2.png" alt="">
+      <p>Nos basamos en la utilización de software denominado Open Source.</p>
+    </div>
+    <div class="one-third-padding">
+      <h3>¿Para quién?</h3>
+      <img src="img/pics/image3.png" alt="">
+      <p>Dirigido a cualquier tipo de público y en diferentes plataformas.</p>
+    </div>
+  </div>
+  <div class="clearfix-padding"></div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="banner-wrapper">
+      <div class="icon-text">
+        <div class="icon-text-icon">
+          <ul class="footer-nav">
+            <li>
+              <a href="index.html">Inicio</a>
+            </li>
+            <li>
+              <a href="#services">Servicios</a>
+            </li>
+            <li>
+              <a href="developing.html">Desarrollo</a>
+            </li>
+            <li>
+              <a href="ourteam.html">Nuestro equipo</a>
+            </li>
+            <li>
+              <a href="https://politecnicadeavila.usal.es/" target="_blank">Contacto</a>
+            </li>
+          </ul>
+        </div>
+        <div class="icon-text-text">
+          <ul class="social">
+            <li>
+              <a href="mailto:jmlp1992@usal.es" target="_blank">
+                <i class="fa fa-envelope-o"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://es-es.facebook.com/epsavila/" target="_blank">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/epsavila" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="second-footer">
+    <p>
+      &copy; <a href="https://politecnicadeavila.usal.es/" target="_blank">José Miguel León Parra</a>
+    </p>
+  </footer>
+  <!-- SCRIPTS -->
+  <script>
+    $(document).ready(function(){
+      $('.slider1').bxSlider({
+        mode: 'fade',
+      });
+      $('.slider2').bxSlider({
+        mode: 'fade',
+      });
+      $('.slider3').bxSlider({
+        mode: 'fade',
+      });
+      $("#menu-icon").click(function(){
+        $(this).parent().find("ul").toggle();
+      });
+      $("nav ul li").click(function(){
+        if ($("#menu-icon").is(":visible")) {
+          $(this).parent().toggle();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

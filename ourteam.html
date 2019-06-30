@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<meta charset="utf-8">
+<head>
+  <title>OurTeam</title>
+  <!-- ICONOS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- WRAPPER -->
+  <div id="wrapper">
+    <!-- BANNER WRAPPER -->
+    <div id="banner-wrapper">
+      <header>
+        <div id="header-inner">
+          <a href="https://politecnicadeavila.usal.es/" target="_blank" id="logo">
+            <img src="img/pics/eps_logo.png" alt="eps_logo">
+          </a>
+          <nav>
+            <a href="#" id="menu-icon">
+              <i class="fa fa-bars"></i>
+            </a>
+            <ul>
+              <li>
+                <a href="index.html">
+                  Inicio
+                </a>
+              </li>
+              <li>
+                <a href="index.html#services">
+                  Servicios
+                </a>
+              </li>
+              <li>
+                <a href="developing.html">
+                  Desarrollo
+                </a>
+              </li>
+              <li>
+                <a href="ourteam.html">
+                  Nuestro equipo
+                </a>
+              </li>
+              <li>
+                <a href="https://politecnicadeavila.usal.es/" target="_blank">Contacto</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
+    <!-- OURTEAM -->
+    <div class="one-third-padding" id="ourteam">
+      <h3>Benjamín Arias Pérez</h3>
+      <div class="img-usuario" style="background-image: url('img/team/Benjamin_AriasPerez.png');"></div>
+      <p>Profesor en la Universidad de Salamanca desde 2010. Anteriormente fue profesor de la Universidad de León entre 2004 y 2010, y en la Universidad de Salamanca entre 2003 y 2004. Él obtuvo la licenciatura en ingeniería topográfica en la Universidad de Salamanca en 1999 además de un máster en Geodesia y Cartografía en 2002 en la Universidad de Salamanca. Recibió su doctorado de la Universidad de Salamanca en 2008. Es profesor en temas relacionados con la geomática y sus líneas de investigación se centran en la fotogrametría aérea e imágenes de radar.
+      Líneas de investigación:
+      Fotogrametría aérea.
+      Imágenes de radar.</p>
+    </div>
+    <div class="one-third-padding">
+      <h3>José Antonio Martín Jiménez</h3>
+      <div class="img-usuario" style="background-image: url('img/team/JoseA_MartinJimenez.png');"></div>
+      <p>Profesor Asociado en el Departamento de Ingeniería Cartográfica y del Terreno. Se graduó en la Universidad de Salamanca (España) en Diplomatura en Informática (1993) y obtuvo su título de Ingeniería Informática (1996) en la Universidad de Valladolid (España). Es analista y programador de aplicaciones en distintos lenguajes. Sus líneas de docencia e investigación se centran en desarrollo de aplicaciones para Ingeniería y Arquitectura.
+      Líneas de investigación:
+      Desarrollo de aplicaciones para ingeniería y arquitectura.</p>
+    </div>
+    <div class="one-third-padding">
+      <h3>María Esther Carrasco Jaramillo</h3>
+      <div class="img-usuario" style="background-image: url('img/team/jcyl.png');"></div>
+      <p>Perteneciente al cuerpo de Ingenieros Técnicos de la Junta de Castilla y León. Presta servicio en las secciones de Conservación y Explotación de Carreteras de la Junta de Castilla y León en Ávila.
+        Ingeniera Técnico en Topografía por la Universidad Politécnica de Madrid (año 1992) e Ingeniera en Geodesia y Cartografía por la Universidad de Salamanca (año 2005).
+</p>
+    </div>
+    <div class="one-third-padding">
+      <h3>José Miguel León Parra</h3>
+      <div class="img-usuario" style="background-image: url('img/team/jmlp.png');"></div>
+      <p>Estudiante del Grado en Ingeniería Geomática y Topografía por la Universidad de Salamanca en la Escuela Politécnica Superior de Ávila.</p>
+    </div>
+  </div>
+  <div class="clearfix-padding"></div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="banner-wrapper">
+      <div class="icon-text">
+        <div class="icon-text-icon">
+          <ul class="footer-nav">
+            <li>
+              <a href="index.html">Inicio</a>
+            </li>
+            <li>
+              <a href="index.html#services">Servicios</a>
+            </li>
+            <li>
+              <a href="developing.html">Desarrollo</a>
+            </li>
+            <li>
+              <a href="ourteam.html">Nuestro equipo</a>
+            </li>
+            <li>
+              <a href="https://politecnicadeavila.usal.es/" target="_blank">Contacto</a>
+            </li>
+          </ul>
+        </div>
+        <div class="icon-text-text">
+          <ul class="social">
+            <li>
+              <a href="mailto:jmlp1992@usal.es" target="_blank">
+                <i class="fa fa-envelope-o"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://es-es.facebook.com/epsavila/" target="_blank">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/epsavila" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="second-footer">
+    <p>
+      &copy; <a href="https://politecnicadeavila.usal.es/" target="_blank">José Miguel León Parra</a>
+    </p>
+  </footer>
+  <!-- SCRIPTS -->
+  <script>
+    $(document).ready(function(){
+      $("#menu-icon").click(function(){
+        $(this).parent().find("ul").toggle();
+      });
+      $("nav ul li").click(function(){
+        if ($("#menu-icon").is(":visible")) {
+          $(this).parent().toggle();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

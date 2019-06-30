@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<title>Developing</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+	<!--  jsPDF-->
+	<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+	<!-- AutoTable -->
+	<script src="https://unpkg.com/jspdf-autotable@3.1.1/dist/jspdf.plugin.autotable.js"></script>
+	<!-- Leaflet -->
+	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+	<!-- ICONOS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- DATA -->
+	<!-- <script type="text/javascript" src="data/espana.js"></script>
+	<script type="text/javascript" src="data/comunidades.js"></script>
+	<script type="text/javascript" src="data/provincias.js"></script> -->
+	<script type="text/javascript" src="data/avila.js"></script>
+	<script type="text/javascript" src="data/gof.js"></script>
+	<script type="text/javascript" src="data/pof.js"></script>
+	<script type="text/javascript" src="data/senales.js"></script>
+	<script type="text/javascript" src="data/firmes.js"></script>
+	<!-- ESTILOS -->
+	<link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- BANNER WRAPPER -->
+		<div id="banner-wrapper">
+			<header>
+				<div id="header-inner">
+					<a href="https://politecnicadeavila.usal.es/" target="_blank" id="logo">
+						<img src="img/pics/eps_logo.png" alt="eps_logo">
+					</a>
+					<nav>
+						<a href="#" id="menu-icon">
+							<i class="fa fa-bars"></i>
+						</a>
+						<ul>
+							<li>
+								<a href="index.html">
+									Inicio
+								</a>
+							</li>
+							<li>
+								<a href="index.html#services">
+									Servicios
+								</a>
+							</li>
+							<li>
+								<a href="developing.html">
+									Desarrollo
+								</a>
+							</li>
+							<li>
+								<a href="ourteam.html">
+									Nuestro equipo
+								</a>
+							</li>
+							<li>
+								<a href="https://politecnicadeavila.usal.es/" target="_blank">Contacto</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+		</div>
+	</div>
+
+	<div class="map-container">
+	<div id="map"></div>
+	<div id="side">
+		<div id="menuprincipal">
+			<h2>Consultas</h2>
+			<form action="servidor" method="POST">
+				<div id="capaprincipal">
+					<ul>
+						<li>
+							<label>Capa:</label>
+							<select id="consultatype">
+								<option value="">Seleccione una opción</option>
+								<option value="signals">Señales</option>
+								<option value="gof">Grandes obras de fábrica</option>
+								<option value="pof">Pequeñas obras de fábrica</option>
+								<option value="firmes">Firmes</option>
+							</select>
+						</li>
+						<li>
+							<div id="signals_menu" class="consultamenu">
+								<label>Fabricante:</label>
+								<select id="consultafabricante">
+									<option value="">Todos</option>
+									<option value="API">API</option>
+									<option value="CENTRO SL">CENTRO SL</option>
+									<option value="DIEZ">DIEZ</option>
+									<option value="FERROSER">FERROSER</option>
+									<option value="GRUPISA">GRUPISA</option>
+									<option value="IBERSEÑAL">IBERSEÑAL</option>
+									<option value="NICSA">NICSA</option>
+									<option value="P.V.">P.V.</option>
+									<option value="PACASA">PACASA</option>
+									<option value="POSTIGO">POSTIGO</option>
+									<option value="REYNOBER">REYNOBER</option>
+									<option value="SALMANTINA">SALMANTINA</option>
+									<option value="SOMAVI">SOMAVI</option>
+									<option value="TECNOSEÑAL">TECNOSEÑAL</option>
+									<option value="TEVACAL">TEVACAL</option>
+									<option value="TEVASEÑAL">TEVASEÑAL</option>
+									<option value="VIALCAL">VIALCAL</option>
+									<option value="VILLAR">VILLAR</option>
+									<option value="VITREX">VITREX</option>
+								</select>
+								<label>Geometría:</label>
+								<select id="consultageometria">
+									<option value="">Todas</option>
+									<option value="Circular">Circular</option>
+									<option value="Rectangular">Rectangular</option>
+									<option value="Triangular">Triangular</option>
+									<option value="Cuadrada">Cuadrada</option>
+									<option value="Octogonal">Octogonal</option>
+									<option value="Carteles">Carteles</option>
+									<option value="Flecha de orientacion">Flecha de orientacion</option>
+									<option value="Panel direccional">Panel direccional</option>
+									<option value="Perfil IPN">Perfil IPN</option>
+								</select>
+								<label>Uso:</label>
+								<select id="consultauso">
+									<option value="">Todos</option>
+									<option value="Balizamiento">Balizamiento</option>
+									<option value="Preseñalizacion">Preseñalizacion</option>
+									<option value="Señal de codigo">Señal de codigo</option>
+								</select>
+								<label>¿Se conserva en buen estado?:</label>
+								<select id="consultaestadosignal">
+									<option value="">Todos</option>
+									<option value="True">True</option>
+									<option value="False">False</option>
+								</select>
+								<label>Año antigüedad:</label>
+								<input type="text" id="consultaactualizacionsignal">
+								<div>
+									<input type="button" id="button" value="Calcular" onclick="mostrarsignal()"/>
+								</div>
+							</div>
+
+						</li>
+						<li>
+							<div id="gof_menu" class="consultamenu">
+								<label>Barandilla:</label>
+								<select id="consultabarandilla">
+									<option value="">Todos</option>
+									<option value="True">True</option>
+									<option value="False">False</option>
+								</select>
+								<label>Pretil piedra:</label>
+								<select id="consultapretilpiedra">
+									<option value="">Todos</option>
+									<option value="True">True</option>
+									<option value="False">False</option>
+								</select>
+								<label>Pretil hormigón:</label>
+								<select id="consultapretilhormigon">
+									<option value="">Todos</option>
+									<option value="True">True</option>
+									<option value="False">False</option>
+								</select>
+								<label>Otro:</label>
+								<select id="consultaotro">
+									<option value="">Todos</option>
+									<option value="BIONDA">BIONDA</option>
+								</select>
+								<label>¿Se conserva en buen estado?:</label>
+								<select id="consultaestadogof">
+									<option value="">Todos</option>
+									<option value="True">True</option>
+									<option value="False">False</option>
+								</select>
+								<label>Año antigüedad:</label>
+								<input type="text" id="consultaactualizaciongof">
+								<div>
+									<input type="button" id="button" value="Calcular" onclick="mostrargof()"/>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div id="pof_menu" class="consultamenu">
+								<label>Embocadura margen derecho:</label>
+								<select id="consultamargenderecho">
+									<option value="">Todos</option>
+									<option value="ARRIBA">ARRIBA</option>
+									<option value="ABAJO">ABAJO</option>
+								</select>
+								<label>Embocadura margen izquierdo:</label>
+								<select id="consultamargenizquierdo">
+									<option value="">Todos</option>
+									<option value="ARRIBA">ARRIBA</option>
+									<option value="ABAJO">ABAJO</option>
+								</select>
+								<label>¿Se conserva en buen estado?:</label>
+								<select id="consultaestadopof">
+									<option value="">Todos</option>
+									<option value="True">True</option>
+									<option value="False">False</option>
+								</select>
+								<label>Año antigüedad:</label>
+								<input type="text" id="consultaactualizacionpof">
+								<div>
+									<input type="button" id="button" value="Calcular" onclick="mostrarpof()"/>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div id="firmes_menu" class="consultamenu">
+								<label>Margen:</label>
+								<select id="consultamargen">
+									<option value="">Todos</option>
+									<option value="D - Derecho">D - Derecho</option>
+									<option value="I - Izquierdo">I - Izquierdo</option>
+								</select>
+								<label>¿Se conserva en buen estado?:</label>
+								<select id="consultaestadofirmes">
+									<option value="">Todos</option>
+									<option value="True">True</option>
+									<option value="False">False</option>
+								</select>
+								<label>Año antigüedad:</label>
+								<input type="text" id="consultaactualizacionfirmes">
+								<div>
+									<input type="button" id="button" value="Calcular" onclick="mostrarfirmes()"/>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</form>
+
+		</div>
+
+		<div id="menuinformacion">
+			<h2>Información</h2>
+			<form action="servidor" method="POST">
+				<div id="capasignal">
+					<ul>
+						<li>
+							<h3>Datos señales</h3>
+							<h4>Datos generales:</h4>
+							<p class="codigosignal">
+								<label for="codigosignal">Código:</label>
+								<input id="codigosignal" name="codigosignal" type="text"/>
+							</p>
+							<p class="actualizacionsignal">
+								<label for="actualizacionsignal">Última actualización:</label>
+								<input id="actualizacionsignal" name="actualizacionsignal" type="text"/>
+							</p>
+							<p class="estadosignal">
+								<label for="estadosignal">¿Se conserva en buen estado?</label>
+								<input id="estadosignal" name="estadosignal" type="text" readonly placeholder=/>
+							</p>
+							<h4>Atributos:</h4>
+							<p class="geometriasignal">
+								<label for="geometriasignal">Geometría:</label>
+								<input id="geometriasignal" name="geometriasignal" type="text"/>
+							</p>
+							<p class="usosignal">
+								<label for="usosignal">Uso:</label>
+								<input id="usosignal" name="usosignal" type="text"/>
+							</p>
+							<p class="imagensignal">
+								<label for="imagensignal">Señal:</label>
+								<img id="imagensignal">
+							</p>
+						</li>
+					</ul>
+				</div>
+				<div id="capagof">
+					<ul>
+						<li>
+							<h3>Datos grandes obras de fábrica</h3>
+							<h4>Datos generales:</h4>
+							<p class="codigogof">
+								<label for="codigogof">Código:</label>
+								<input id="codigogof" name="codigogof" type="text"/>
+							</p>
+							<p class="actualizaciongof">
+								<label for="actualizaciongof">Última actualización</label>
+								<input id="actualizaciongof" name="actualizaciongof" type="text"/>
+							</p>
+							<p class="estadogof">
+								<label for="estadogof">¿Se conserva en buen estado?</label>
+								<input id="estadogof" name="estadogof" type="text"/>
+							</p>
+							<h4>Sistema de contención:</h4>
+							<p class="barandillagof">
+								<label for="barandillagof">Barandilla:</label>
+								<input id="barandillagof" name="barandillagof" type="text"/>
+							</p>
+							<p class="pretilhormigongof">
+								<label for="pretilhormigongof">Pretil hormigón:</label>
+								<input id="pretilhormigongof" name="pretilhormigongof" type="text"/>
+							</p>
+							<p class="pretilpiedragof">
+								<label for="pretilpiedragof">Pretil piedra:</label>
+								<input id="pretilpiedragof" name="pretilpiedragof" type="text"/>
+							</p>
+							<p class="otrogof">
+								<label for="otrogof">Otro:</label>
+								<input id="otrogof" name="otrogof" type="text"/>
+							</p>
+						</li>
+					</ul>
+				</div>
+				<div id="capapof">
+					<ul>
+						<li>
+							<h3>Datos pequeñas obras de fábrica</h3>
+							<h4>Datos generales:</h4>
+							<p class="codigopof">
+								<label for="codigopof">Código:</label>
+								<input id="codigopof" name="codigopof" type="text"/>
+							</p>
+							<p class="actualizacionpof">
+								<label for="actualizacionpof">Última actualización:</label>
+								<input id="actualizacionpof" name="actualizacionpof" type="text"/>
+							</p>
+							<p class="estadopof">
+								<label for="estadopof">¿Se conserva en buen estado?</label>
+								<input id="estadopof" name="estadopof" type="text"/>
+							</p>
+							<h4>Embocadura:</h4>
+							<p class="margenderechopof">
+								<label for="margenderechopof">Margen derecho:</label>
+								<input id="margenderechopof" name="margenderechopof" type="text"/>
+							</p>
+							<p class="margenizquierdopof">
+								<label for="margenizquierdopof">Margen izquierdo:</label>
+								<input id="margenizquierdopof" name="margenizquierdopof" type="text"/>
+							</p>
+						</li>
+					</ul>
+				</div>
+				<div id="capafirmes">
+					<ul>
+						<li>
+							<h3>Datos firmes</h3>
+							<h4>Datos generales:</h4>
+							<p class="codigofirmes">
+								<label for="codigofirmes">Código:</label>
+								<input id="codigofirmes" name="codigofirmes" type="text"/>
+							</p>
+							<p class="actualizacionfirmes">
+								<label for="actualizacionfirmes">Última actualización:</label>
+								<input id="actualizacionfirmes" name="actualizacionfirmes" type="text"/>
+							</p>
+							<p class="estadofirmes">
+								<label for="estadofirmes">¿Se conserva en buen estado?</label>
+								<input id="estadofirmes" name="estadopofirmes" type="text"/>
+							</p>
+						</li>
+					</ul>
+				</div>
+				<input type="button" id="button" value="Volver" onclick="volver()"/>
+			</form>
+
+		</div>
+	</div>
+
+	</div>
+	<!-- FOOTER -->
+	<footer>
+		<div class="banner-wrapper">
+			<div class="icon-text">
+				<div class="icon-text-icon">
+					<ul class="footer-nav">
+						<li>
+							<a href="index.html">Inicio</a>
+						</li>
+						<li>
+							<a href="index.html#services">Servicios</a>
+						</li>
+						<li>
+							<a href="developing.html">Desarrollo</a>
+						</li>
+						<li>
+							<a href="ourteam.html">Nuestro equipo</a>
+						</li>
+						<li>
+							<a href="https://politecnicadeavila.usal.es/" target="_blank">Contacto</a>
+						</li>
+					</ul>
+				</div>
+				<div class="icon-text-text">
+					<ul class="social">
+						<li>
+							<a href="mailto:jmlp1992@usal.es" target="_blank">
+								<i class="fa fa-envelope-o"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://es-es.facebook.com/epsavila/" target="_blank">
+								<i class="fa fa-facebook"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://twitter.com/epsavila" target="_blank">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<footer class="second-footer">
+		<p>
+			&copy; <a href="https://politecnicadeavila.usal.es/" target="_blank">José Miguel León Parra</a>
+		</p>
+	</footer>
+	<script>
+	// function getColor(d) {
+	// 	return d > 2 ? '#9A7D0A' :
+	// 	d > 1.5 ? '#B7950B' :
+	// 	d > 1.2 ? '#D4AC0D' :
+	// 	d > 1.0 ? '#F1C40F' :
+	// 	d > 0.75 ? '#F4D03F' :
+	// 	d > 0.5 ? '#F7DC6F' :
+	// 	d > 0.25 ? '#F9E79F' :
+	// 	'#FCF3CF';
+	// }
+	// function style(feature) {
+	// 	return {
+	// 		fillColor: getColor(
+	// 		feature.properties.Shape_Area),
+	// 		weight: 2,
+	// 		opacity: 1,
+	// 		color: 'black',
+	// 		fillOpacity: 0.7
+	// 	};
+	// }
+	function estiloCirculo(feature, latlng) {
+		return L.circleMarker(latlng, {
+			radius: 5.0,
+			fillColor: 'blue',
+			color: '#FFFFFF',
+			weight: 2,
+			opacity: 1.0,
+			fillOpacity: 1.0
+		})
+	}
+</script>
+<script>
+	var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+	var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+	var osmAttrib = '&copy; ' + osmLink + ' Contributors';
+	var osmMap = L.tileLayer(osmUrl, {attribution: osmAttrib});
+	var mapa = L.map('map',{measureControl:true, maxZoom:20,center: new L.LatLng(40.5039829,-5.3979975),zoom:11});
+	osmMap.addTo(mapa);
+	var capasbase = {
+		"Mapa OpenStreetMap": osmMap
+	};
+	// var estilopais = {
+	// 	"fillColor": "#D98880",
+	// 	"opacity": 1,
+	// 	"color": "#000000",
+	// 	"weight": 1,
+	// 	"fillOpacity": 0.8
+	// };
+	// var estilocomunidades = {
+	// 	"fillColor": "#85C1E9",
+	// 	"opacity": 1,
+	// 	"color": "#000000",
+	// 	"weight": 1,
+	// 	"fillOpacity": 0.8
+	// };
+	var estiloavila = {
+		"fillColor": "#ffff00",
+		"opacity": 1,
+		"color": "#000000",
+		"weight": 1,
+		"fillOpacity": 0.4
+	};
+	var estilosenales = {
+		"radius": 2.5,
+		"fillColor": "#969992",
+		"opacity": 1,
+		"color": "#000000",
+		"weight": 1,
+		"fillOpacity": 0.8
+	};
+	var estilograndes = {
+		"fillColor": "#FF0000",
+		"opacity": 1,
+		"color": "#000000",
+		"weight": 1,
+		"fillOpacity": 0.8
+	};
+	var estilopeques = {
+		"fillColor": "#0000FF",
+		"opacity": 1,
+		"color": "#000000",
+		"weight": 1,
+		"fillOpacity": 0.8
+	};
+	var estilofirmes = {
+		"fillColor": "#000000",
+		"opacity": 1,
+		"color": "#FFFFFF",
+		"weight": 1,
+		"fillOpacity": 0.8
+	};
+	// capa_pais=L.geoJson(espana, {style: estilopais}).addTo(mapa);
+	// capa_comunidades=L.geoJson(comunidades, {style: estilocomunidades}).addTo(mapa);
+	// capa_provincias=L.geoJson(provincias, { style: style }).addTo(mapa);
+	capa_avila=L.geoJson(avila, { style: estiloavila }).addTo(mapa);
+	capa_firmes=L.geoJson(firmes, {style: estilofirmes,
+		onEachFeature: function(feature, layer) {
+			layer.on("click", function(datos){
+				console.log(feature);
+				$("#capafirmes, #menuinformacion").show();
+				$("#capasignal").hide();
+				$("#capagof").hide();
+				$("#capapof").hide();
+				$("#codigofirmes").val(feature.properties["COD"]);
+				$("#actualizacionfirmes").val(feature.properties["ACTUALIZAC"]);
+				$("#estadofirmes").val(feature.properties["BUEN_ESTAD"]);
+				$("#menuprincipal").hide();
+			});
+		}}).addTo(mapa);
+	capa_gof=L.geoJson(gof, {style: estilograndes,
+		onEachFeature: function(feature, layer) {
+			layer.on("click", function(datos){
+				console.log(feature);
+				$("#capagof, #menuinformacion").show();
+				$("#capasignal").hide();
+				$("#capapof").hide();
+				$("#capafirmes").hide();
+				$("#codigogof").val(feature.properties["COD"]);
+				$("#actualizaciongof").val(feature.properties["ACTUALIZAC"]);
+				$("#estadogof").val(feature.properties["BUEN_ESTAD"]);
+				$("#barandillagof").val(feature.properties["BARANDILLA"]);
+				$("#pretilhormigongof").val(feature.properties["PRETIL_HOR"]);
+				$("#pretilpiedragof").val(feature.properties["PRETIL_PIE"]);
+				$("#otrogof").val(feature.properties["OTRO"]);
+				$("#menuprincipal").hide();
+			});
+		}}).addTo(mapa);
+	capa_pof=L.geoJson(pof, {style: estilopeques,
+		onEachFeature: function(feature, layer) {
+			layer.on("click", function(datos){
+				console.log(feature);
+				$("#capapof, #menuinformacion").show();
+				$("#capasignal").hide();
+				$("#capagof").hide();
+				$("#capafirmes").hide();
+				$("#codigopof").val(feature.properties["COD"]);
+				$("#actualizacionpof").val(feature.properties["ACTUALIZAC"]);
+				$("#estadopof").val(feature.properties["BUEN_ESTAD"]);
+				$("#margenderechopof").val(feature.properties["AGUAS_MD"]);
+				$("#margenizquierdopof").val(feature.properties["AGUAS_MI"]);
+				$("#menuprincipal").hide();
+			});
+		}}).addTo(mapa);
+	capa_senales=L.geoJson(senales,{
+		pointToLayer: function(feature, latlng){
+			//var marker = L.circleMarker(latlng, estilosenales);
+			//marker.bindPopup('<img src="./img/signals/' + feature.properties["TIPO"] + '.gif" />' + feature.properties["COD"]).openPopup();
+			var logoMarkerStyle = L.Icon.extend({
+                                            options: {
+                                            iconSize: [20, 20],
+                                            iconAnchor: [20, 20],
+                                            popupAnchor: [0, -20]
+                                        }
+                                    });
+            var logoMarker = new logoMarkerStyle({iconUrl: './img/signals/' + feature.properties["TIPO"] + '.gif'});
+            var marker = L.marker(latlng,{icon: logoMarker}).addTo(mapa);
+            //marker.bindPopup('<img src="./img/signals/' + feature.properties["TIPO"] + '.gif" />' + feature.properties["COD"]).openPopup();
+			return marker;
+		},
+		onEachFeature: function(feature, layer) {
+			layer.on("click", function(datos){
+				console.log(feature);
+				$("#capasignal, #menuinformacion").show();
+				$("#capagof").hide();
+				$("#capapof").hide();
+				$("#capafirmes").hide();
+				$("#codigosignal").val(feature.properties["COD"]);
+				$("#actualizacionsignal").val(feature.properties["ACTUALIZAC"]);
+				$("#estadosignal").val(feature.properties["BUEN_ESTAD"]);
+				$("#geometriasignal").val(feature.properties["GEOMETRIA"]);
+				$("#usosignal").val(feature.properties["USO"]);
+				$("#imagensignal").attr("src","./img/signals/" + feature.properties["TIPO"] + ".gif");
+				$("#menuprincipal").hide();
+			});
+		}
+	}).addTo(mapa);
+	var capasadicionales = {
+			// "España": capa_pais,
+			// "Comunidades Autónomas":capa_comunidades,
+			// "Provincias de España":capa_provincias,
+			"Provincia de Ávila":capa_avila,
+			"Firmes":capa_firmes,
+			"Grandes obras de fábrica":capa_gof,
+			"Pequeñas obras de fábrica":capa_pof,
+			"Señales":capa_senales
+	};
+	L.control.layers(capasbase,capasadicionales).addTo(mapa);
+	function mostrarsignal(){
+		var doc = new jsPDF("p", "mm", "a4");
+		var base64 = getBase64Image($("#header-inner #logo img")[0]);
+		doc.addImage(base64, 'JPEG', 14, 10, 80, 22.5);
+		doc.text(14, 38, 'Signals_Report');
+		var fabricante = $("#consultafabricante").val();
+		var aResul = [];
+		aResul = filtrarsignal(senales.features, "FABRICANTE", fabricante);
+		var geometria = $("#consultageometria").val();
+		var aResul1 = [];
+		aResul1 = filtrarsignal(aResul, "GEOMETRIA", geometria);
+		var uso = $("#consultauso").val();
+		var aResul2 = [];
+		aResul2 = filtrarsignal(aResul1, "USO", uso);
+		var buen_estad_signal = $("#consultaestadosignal").val();
+		var aResul3 = [];
+		aResul3 = filtrarsignal(aResul2, "BUEN_ESTAD", buen_estad_signal);
+		var actualizac_signal = $("#consultaactualizacionsignal").val();
+		var aResul4= [];
+		aResul4 = filtrarsignal(aResul3,"ACTUALIZAC",actualizac_signal);
+		// Cambiar por el último filtro
+		aResul = aResul4;
+		var resul;
+		var cuerpo=[];
+		for (var i = 0; i < aResul.length; i++) {
+			resul = aResul[i].properties;
+			cuerpo[i]=[{content: (i+1)},{content: resul.COD},{content: resul.NOMBRE_VIA}];
+		}
+			doc.autoTable({
+				//styles: {fillColor: [0, 0, 0]},
+				startY:45.5,
+				Padding: {top: 0, right: 0, bottom: 0, left: 0},
+				head:[['ID','Código señal','Nombre vía']],
+				body: cuerpo//, styles: {halign: 'left', lineWidth: 0}, fillColor: [0, 0, 0]}]]
+			});
+		doc.save('Signals_Report.pdf')
+	}
+
+	function mostrargof(){
+		var doc = new jsPDF("p", "mm", "a4");
+		var base64 = getBase64Image($("#header-inner #logo img")[0]);
+		doc.addImage(base64, 'JPEG', 14, 10, 80, 22.5);
+		doc.text(14, 38, 'GOF_Report');
+		var barandilla = $("#consultabarandilla").val();
+		var aResul = [];
+			aResul = filtrargof(gof.features, "BARANDILLA", barandilla);
+		var pretilpiedra = $("#consultapretilpiedra").val();
+		var aResul1 = [];
+		aResul1 = filtrargof(aResul, "PRETIL_PIE", pretilpiedra);
+		var pretilhormigon = $("#consultapretilhormigon").val();
+		var aResul2 = [];
+		aResul2 = filtrargof(aResul1, "PRETIL_HOR", pretilhormigon);
+		var otro = $("#consultaotro").val();
+		var aResul3 = [];
+		aResul3 = filtrargof(aResul2, "OTRO", otro);
+		var buen_estad_gof = $("#consultaestadogof").val();
+		var aResul4 = [];
+		aResul4 = filtrargof(aResul3, "BUEN_ESTAD", buen_estad_gof);
+		var actualizac_gof = $("#consultaactualizaciongof").val();
+		var aResul5= [];
+		aResul5 = filtrargof(aResul4,"ACTUALIZAC",actualizac_gof);
+		// Cambiar por el último filtro
+		aResul = aResul5;
+		var resul;
+		var cuerpo=[];
+		for (var i = 0; i < aResul.length; i++) {
+			resul = aResul[i].properties;
+			cuerpo[i]=[{content: (i+1)},{content: resul.COD},{content: resul.NOMBRE_VIA}];
+		}
+			doc.autoTable({
+				//styles: {fillColor: [0, 0, 0]},
+				startY:45.5,
+				Padding: {top: 0, right: 0, bottom: 0, left: 0},
+				head:[['ID','Código GOF','Nombre vía']],
+				body: cuerpo//, styles: {halign: 'left', lineWidth: 0}, fillColor: [0, 0, 0]}]]
+			});
+		doc.save('GOF_Report.pdf')
+	}
+
+	function mostrarpof(){
+		var doc = new jsPDF("p", "mm", "a4");
+		var base64 = getBase64Image($("#header-inner #logo img")[0]);
+		doc.addImage(base64, 'JPEG', 14, 10, 80, 22.5);
+		doc.text(14, 38, 'POF_Report');
+		var aguas_md = $("#consultamargenderecho").val();
+		var aResul = [];
+			aResul = filtrarpof(pof.features, "AGUAS_MD", aguas_md);
+		var aguas_mi = $("#consultamargenizquierdo").val();
+		var aResul1 = [];
+		aResul1 = filtrarpof(aResul, "AGUAS_MI", aguas_mi);
+		var buen_estad_pof = $("#consultaestadopof").val();
+		var aResul2 = [];
+		aResul2 = filtrarpof(aResul1, "BUEN_ESTAD", buen_estad_pof);
+		var actualizac_pof = $("#consultaactualizacionpof").val();
+		var aResul3= [];
+		aResul3 = filtrarpof(aResul2,"ACTUALIZAC",actualizac_pof);
+		// Cambiar por el último filtro
+		aResul = aResul3;
+		var resul;
+		var cuerpo=[];
+		for (var i = 0; i < aResul.length; i++) {
+			resul = aResul[i].properties;
+			cuerpo[i]=[{content: (i+1)},{content: resul.COD},{content: resul.NOMBRE_VIA}];
+		}
+			doc.autoTable({
+				//styles: {fillColor: [0, 0, 0]},
+				startY:45.5,
+				Padding: {top: 0, right: 0, bottom: 0, left: 0},
+				head:[['ID','Código GOF','Nombre vía']],
+				body: cuerpo//, styles: {halign: 'left', lineWidth: 0}, fillColor: [0, 0, 0]}]]
+			});
+		doc.save('POF_Report.pdf')
+	}
+	function mostrarfirmes(){
+		var doc = new jsPDF("p", "mm", "a4");
+		var base64 = getBase64Image($("#header-inner #logo img")[0]);
+		doc.addImage(base64, 'JPEG', 14, 10, 80, 22.5);
+		doc.text(14, 38, 'Firmes_Report');
+		var margen = $("#consultamargen").val();
+		var aResul = [];
+		aResul = filtrarfirmes(firmes.features, "MARGEN", margen);
+		var buen_estad_firmes = $("#consultaestadofirmes").val();
+		var aResul1 = [];
+		aResul1 = filtrarfirmes(aResul, "BUEN_ESTAD", buen_estad_firmes);
+		var actualizac_firmes = $("#consultaactualizacionfirmes").val();
+		var aResul2= [];
+		aResul2 = filtrarfirmes(aResul1,"ACTUALIZAC",actualizac_firmes);
+		// Cambiar por el último filtro
+		aResul = aResul2;
+		var resul;
+		var cuerpo=[];
+		for (var i = 0; i < aResul.length; i++) {
+			resul = aResul[i].properties;
+			cuerpo[i]=[{content: (i+1)},{content: resul.COD},{content: resul.NOMBRE_VIA}];
+		}
+			doc.autoTable({
+				//styles: {fillColor: [0, 0, 0]},
+				startY:45.5,
+				Padding: {top: 0, right: 0, bottom: 0, left: 0},
+				head:[['ID','Código Firme','Nombre vía']],
+				body: cuerpo//, styles: {halign: 'left', lineWidth: 0}, fillColor: [0, 0, 0]}]]
+			});
+		doc.save('Firmes_Report.pdf')
+	}
+
+	 function getBase64Image(img) {
+	 	var canvas = document.createElement("canvas");
+	 	canvas.width = img.naturalWidth;
+	 	canvas.height = img.naturalHeight;
+	 	var ctx = canvas.getContext("2d");
+	 	ctx.drawImage(img, 0, 0);
+	 	var dataURL = canvas.toDataURL("image/png");
+	 	return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+	 }
+
+
+	function filtrarsignal (aResulOrig, propiedadfiltro, valorfiltro) {
+		var aResul = [];
+		$.each(aResulOrig, function(i, v) {
+			var resul = {};
+			if (valorfiltro === "") {
+				aResul.push(v);
+			} else {
+				var prop = undefined;
+				if (propiedadfiltro === "FABRICANTE") {
+					prop = v.properties.FABRICANTE;
+				} else if (propiedadfiltro === "GEOMETRIA") {
+					prop = v.properties.GEOMETRIA;
+				} else if (propiedadfiltro === "USO") {
+					prop = v.properties.USO;
+				} else if (propiedadfiltro === "BUEN_ESTAD") {
+					prop = v.properties.BUEN_ESTAD;
+				}
+				if (prop === valorfiltro) {
+		  			aResul.push(v);
+		  		}
+				if (propiedadfiltro === "ACTUALIZAC"){
+					prop = parseInt(v.properties.ACTUALIZAC.substring(6,10));
+					//alert(prop);
+					if (prop <= valorfiltro){
+						aResul.push(v);
+					}
+				}
+		  	}
+		});
+		return aResul;
+	}
+
+	function filtrargof (aResulOrig, propiedadfiltro, valorfiltro) {
+		var aResul = [];
+		$.each(aResulOrig, function(i, v) {
+			var resul = {};
+			if (valorfiltro === "") {
+				aResul.push(v);
+			} else {
+				var prop = undefined;
+				if (propiedadfiltro === "BARANDILLA") {
+					prop = v.properties.BARANDILLA;
+				} else if (propiedadfiltro === "PRETIL_PIE") {
+					prop = v.properties.PRETIL_PIE;
+				} else if (propiedadfiltro === "PRETIL_HOR") {
+					prop = v.properties.PRETIL_HOR;
+				} else if (propiedadfiltro === "OTRO") {
+					prop = v.properties.OTRO;
+				} else if (propiedadfiltro === "BUEN_ESTAD") {
+					prop = v.properties.BUEN_ESTAD;
+				}
+				if (prop === valorfiltro) {
+		  			aResul.push(v);
+		  		}
+				if (propiedadfiltro === "ACTUALIZAC"){
+					prop = parseInt(v.properties.ACTUALIZAC.substring(6,10));
+					//alert(prop);
+					if (prop <= valorfiltro){
+						aResul.push(v);
+					}
+				}
+		  	}
+		});
+		return aResul;
+	}
+
+	function filtrarpof (aResulOrig, propiedadfiltro, valorfiltro) {
+		var aResul = [];
+		$.each(aResulOrig, function(i, v) {
+			var resul = {};
+			if (valorfiltro === "") {
+				aResul.push(v);
+			} else {
+				var prop = undefined;
+				if (propiedadfiltro === "AGUAS_MD") {
+					prop = v.properties.AGUAS_MD;
+				} else if (propiedadfiltro === "AGUAS_MI") {
+					prop = v.properties.AGUAS_MI;
+				} else if (propiedadfiltro === "BUEN_ESTAD") {
+					prop = v.properties.BUEN_ESTAD;
+				}
+				if (prop === valorfiltro) {
+						aResul.push(v);
+					}
+				if (propiedadfiltro === "ACTUALIZAC"){
+					prop = parseInt(v.properties.ACTUALIZAC.substring(6,10));
+					//alert(prop);
+					if (prop <= valorfiltro){
+						aResul.push(v);
+					}
+				}
+				}
+		});
+		return aResul;
+	}
+	function filtrarfirmes (aResulOrig, propiedadfiltro, valorfiltro) {
+		var aResul = [];
+		$.each(aResulOrig, function(i, v) {
+			var resul = {};
+			if (valorfiltro === "") {
+				aResul.push(v);
+			} else {
+				var prop = undefined;
+				if (propiedadfiltro === "MARGEN") {
+					prop = v.properties.MARGEN;
+				} else if (propiedadfiltro === "BUEN_ESTAD") {
+					prop = v.properties.BUEN_ESTAD;
+				}
+				if (prop === valorfiltro) {
+						aResul.push(v);
+					}
+				if (propiedadfiltro === "ACTUALIZAC"){
+					prop = parseInt(v.properties.ACTUALIZAC.substring(6,10));
+					//alert(prop);
+					if (prop <= valorfiltro){
+						aResul.push(v);
+					}
+				}
+				}
+		});
+		return aResul;
+	}
+
+	function volver(){
+		$("#menuprincipal").show();
+		$("#menuinformacion").hide();
+	}
+	$("#consultatype").change(function(){
+		var selected = $("#consultatype").val();
+		$(".consultamenu").hide();
+		switch(selected) {
+			case "signals":
+				$("#signals_menu").show();
+			break;
+			case "gof":
+				$("#gof_menu").show();
+			break;
+			case "pof":
+				$("#pof_menu").show();
+			break;
+			case "firmes":
+				$("#firmes_menu").show();
+			break;
+		}
+	});
+
+	// Menú móviles
+	$("#menu-icon").click(function(){
+		$(this).parent().find("ul").toggle();
+	});
+	$("nav ul li").click(function(){
+	  if ($("#menu-icon").is(":visible")) {
+	    $(this).parent().toggle();
+	  }
+	});
+	</script>
+</body>
+</html>
